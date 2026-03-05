@@ -3,7 +3,7 @@
 use PDO;
 use PDOException;
 
-class MySqlConnector
+class MySqlDatabase
 {
     private static $instance = null;
     private $connection;

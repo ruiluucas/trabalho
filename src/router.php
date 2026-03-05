@@ -7,8 +7,8 @@ use Symfony\Component\HttpFoundation\Response;
 $request = Request::createFromGlobals();
 $response = new Response();
 $map = array(
-    '/hello' => __DIR__ . '/hello.php',
-    '/bye'   => __DIR__ . '/bye.php',
+    '/hello' => __DIR__ . '/controller/hello.php',
+    '/bye'   => __DIR__ . '/controller/bye.php',
 );
 $path = $request->getPathInfo();
 if (isset($map[$path])) {
