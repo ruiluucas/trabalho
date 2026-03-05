@@ -14,6 +14,8 @@ COPY --link \
     --from=ghcr.io/symfony-cli/symfony-cli:latest \
     /usr/local/bin/symfony /usr/local/bin/symfony
 
+RUN docker-php-ext-install pdo pdo_mysql
+
 RUN composer require symfony/http-foundation
 
 WORKDIR /var/www/html

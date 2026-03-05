@@ -11,6 +11,8 @@
         }
     ],
     "require": {
-        "symfony/http-foundation": "^7.4"
+        "symfony/http-foundation": "^7.4",
+        "ext-pdo": "*",
+        "ext-pdo_mysql": "*"
     }
 }
