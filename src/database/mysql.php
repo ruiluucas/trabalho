@@ -8,15 +8,17 @@ class MySqlDatabase
     private static $instance = null;
     private $connection;
 
-    private $host = 'db';
-    private $db   = 'meu_banco';
-    private $user = 'root';
-    private $pass = 'root';
-    private $port = '3306';
-
     private function __construct()
     {
-        $dsn = "mysql:host={$this->host};port={$this->port};dbname={$this->db};charset=utf8mb4";
+
+        $host = $_ENV['DB_HOST'] ?? 'localhost';
+        $db   = $_ENV['DB_NAME'] ?? 'meu_banco';
+        $user = $_ENV['DB_USER'] ?? 'root';
+        $pass = $_ENV['DB_PASS'] ?? 'root';
+        $port = $_ENV['DB_PORT'] ?? '3306';
+        $dsn = "mysql:host={$host};port={$port};dbname={$db};charset=utf8mb4";
+
+        $dsn = "mysql:host={$host};port={$port};dbname={$db};charset=utf8mb4";
 
         $options = [
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
@@ -25,9 +27,9 @@ class MySqlDatabase
         ];
 
         try {
-            $this->connection = new PDO($dsn, $this->user, $this->pass, $options);
+            $this->connection = new PDO($dsn, $user, $pass, $options);
         } catch (PDOException $e) {
-            throw new Exception("Erro na conexão: " . $e->getMessage());
+            throw new Exception("Erro ao conectar com o banco de dados dinâmico.");
         }
     }
 
